@@ -57,7 +57,7 @@ import java.util.List;
  */
 
 public class ValueRecordsAggregate
-    extends Record
+    extends loci.poi.hssf.record.Record
 {
     public final static short sid       = -1000;
     int                       firstcell = -1;
@@ -153,7 +153,7 @@ public class ValueRecordsAggregate
 
         for (k = offset; k < records.size(); k++)
         {
-            Record rec = ( Record ) records.get(k);
+            loci.poi.hssf.record.Record rec = ( loci.poi.hssf.record.Record ) records.get(k);
 
             if (rec instanceof StringRecord == false && !rec.isInValueSection() && !(rec instanceof UnknownRecord))
             {
@@ -164,7 +164,7 @@ public class ValueRecordsAggregate
             {
               FormulaRecord formula = (FormulaRecord)rec;
               if (formula.isSharedFormula()) {
-                Record nextRecord = (Record) records.get(k + 1);
+                loci.poi.hssf.record.Record nextRecord = (loci.poi.hssf.record.Record) records.get(k + 1);
                 if (nextRecord instanceof SharedFormulaRecord) {
                 	sharedFormulas.add(nextRecord);
                 	k++;
@@ -229,7 +229,7 @@ public class ValueRecordsAggregate
         if (row > endRow)
           break;
         if ((row >=startRow) && (row <= endRow))
-          size += ((Record)cell).getRecordSize();
+          size += ((loci.poi.hssf.record.Record)cell).getRecordSize();
       }
       return size;
     }
@@ -257,7 +257,7 @@ public class ValueRecordsAggregate
             CellValueRecordInterface cell = (CellValueRecordInterface)itr.next();
             if (cell.getRow() != row)
               break;
-            pos += (( Record ) cell).serialize(pos, data);
+            pos += (( loci.poi.hssf.record.Record ) cell).serialize(pos, data);
         }
         return pos - offset;
     }
@@ -296,7 +296,7 @@ public class ValueRecordsAggregate
     Iterator irecs = this.getIterator();
         
         while (irecs.hasNext()) {
-                size += (( Record ) irecs.next()).getRecordSize();
+                size += (( loci.poi.hssf.record.Record ) irecs.next()).getRecordSize();
         }
 
         return size;

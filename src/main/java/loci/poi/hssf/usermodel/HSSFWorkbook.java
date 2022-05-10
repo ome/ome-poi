@@ -315,7 +315,7 @@ public class HSSFWorkbook extends POIDocument
              log.log(POILogger.DEBUG, "convertLabelRecords called");
          for (int k = offset; k < records.size(); k++)
          {
-             Record rec = ( Record ) records.get(k);
+             loci.poi.hssf.record.Record rec = ( loci.poi.hssf.record.Record ) records.get(k);
 
              if (rec.getSid() == LabelRecord.sid)
              {

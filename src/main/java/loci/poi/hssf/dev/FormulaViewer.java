@@ -96,7 +96,7 @@ public class FormulaViewer
 
         for (int k = 0; k < records.size(); k++)
         {
-            Record record = ( Record ) records.get(k);
+            loci.poi.hssf.record.Record record = ( loci.poi.hssf.record.Record ) records.get(k);
 
             if (record.getSid() == FormulaRecord.sid)
             {

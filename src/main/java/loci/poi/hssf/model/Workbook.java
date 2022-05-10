@@ -156,7 +156,7 @@ public class Workbook implements Model
         ArrayList records = new ArrayList(recs.size() / 3);
 
         for (int k = 0; k < recs.size(); k++) {
-            Record rec = ( Record ) recs.get(k);
+            loci.poi.hssf.record.Record rec = ( loci.poi.hssf.record.Record ) recs.get(k);
 
             if (rec.getSid() == EOFRecord.sid) {
                 records.add(rec);
@@ -328,7 +328,7 @@ public class Workbook implements Model
         // set up format records
         for ( int i = 0; i <= 7; i++ )
         {
-            Record rec;
+            loci.poi.hssf.record.Record rec;
             rec = retval.createFormat( i );
             retval.maxformatid = retval.maxformatid >= ( (FormatRecord) rec ).getIndexCode() ? retval.maxformatid : ( (FormatRecord) rec ).getIndexCode();
             formats.add( rec );
@@ -782,7 +782,7 @@ public class Workbook implements Model
         for ( int k = 0; k < records.size(); k++ )
         {
 
-            Record record = records.get( k );
+            loci.poi.hssf.record.Record record = records.get( k );
             // Let's skip RECALCID records, as they are only use for optimization
             if ( record.getSid() != RecalcIdRecord.sid || ( (RecalcIdRecord) record ).isNeeded() )
             {
@@ -826,7 +826,7 @@ public class Workbook implements Model
         SSTRecord sst = null;
         for ( int k = 0; k < records.size(); k++ )
         {
-            Record record = records.get( k );
+            loci.poi.hssf.record.Record record = records.get( k );
             // Let's skip RECALCID records, as they are only use for optimization
             if ( record.getSid() != RecalcIdRecord.sid || ( (RecalcIdRecord) record ).isNeeded() )
             {
@@ -848,7 +848,7 @@ public class Workbook implements Model
      * @return record containing a BOFRecord
      */
 
-    protected Record createBOF() {
+    protected loci.poi.hssf.record.Record createBOF() {
         BOFRecord retval = new BOFRecord();
 
         retval.setVersion(( short ) 0x600);
@@ -869,7 +869,7 @@ public class Workbook implements Model
      * @return record containing a InterfaceHdrRecord
      */
 
-    protected Record createInterfaceHdr() {
+    protected loci.poi.hssf.record.Record createInterfaceHdr() {
         InterfaceHdrRecord retval = new InterfaceHdrRecord();
 
         retval.setCodepage(CODEPAGE);
@@ -883,7 +883,7 @@ public class Workbook implements Model
      * @return record containing a MMSRecord
      */
 
-    protected Record createMMS() {
+    protected loci.poi.hssf.record.Record createMMS() {
         MMSRecord retval = new MMSRecord();
 
         retval.setAddMenuCount(( byte ) 0);
@@ -898,7 +898,7 @@ public class Workbook implements Model
      * @return record containing a InterfaceEndRecord
      */
 
-    protected Record createInterfaceEnd() {
+    protected loci.poi.hssf.record.Record createInterfaceEnd() {
         return new InterfaceEndRecord();
     }
 
@@ -909,7 +909,7 @@ public class Workbook implements Model
      * @return record containing a WriteAccessRecord
      */
 
-    protected Record createWriteAccess() {
+    protected loci.poi.hssf.record.Record createWriteAccess() {
         WriteAccessRecord retval = new WriteAccessRecord();
 
         try
@@ -932,7 +932,7 @@ public class Workbook implements Model
      * @return record containing a CodepageRecord
      */
 
-    protected Record createCodepage() {
+    protected loci.poi.hssf.record.Record createCodepage() {
         CodepageRecord retval = new CodepageRecord();
 
         retval.setCodepage(CODEPAGE);
@@ -946,7 +946,7 @@ public class Workbook implements Model
      * @return record containing a DSFRecord
      */
 
-    protected Record createDSF() {
+    protected loci.poi.hssf.record.Record createDSF() {
         DSFRecord retval = new DSFRecord();
 
         retval.setDsf(
@@ -962,7 +962,7 @@ public class Workbook implements Model
      * @return record containing a TabIdRecord
      */
 
-    protected Record createTabId() {
+    protected loci.poi.hssf.record.Record createTabId() {
         TabIdRecord retval     = new TabIdRecord();
         short[]     tabidarray = {
             0
@@ -979,7 +979,7 @@ public class Workbook implements Model
      * @return record containing a FnGroupCountRecord
      */
 
-    protected Record createFnGroupCount() {
+    protected loci.poi.hssf.record.Record createFnGroupCount() {
         FnGroupCountRecord retval = new FnGroupCountRecord();
 
         retval.setCount(( short ) 14);
@@ -993,7 +993,7 @@ public class Workbook implements Model
      * @return record containing a WindowProtectRecord
      */
 
-    protected Record createWindowProtect() {
+    protected loci.poi.hssf.record.Record createWindowProtect() {
         WindowProtectRecord retval = new WindowProtectRecord();
 
         retval.setProtect(
@@ -1008,7 +1008,7 @@ public class Workbook implements Model
      * @return record containing a ProtectRecord
      */
 
-    protected Record createProtect() {
+    protected loci.poi.hssf.record.Record createProtect() {
         ProtectRecord retval = new ProtectRecord();
 
         retval.setProtect(
@@ -1023,7 +1023,7 @@ public class Workbook implements Model
      * @return record containing a PasswordRecord
      */
 
-    protected Record createPassword() {
+    protected loci.poi.hssf.record.Record createPassword() {
         PasswordRecord retval = new PasswordRecord();
 
         retval.setPassword(( short ) 0);   // no password by default!
@@ -1037,7 +1037,7 @@ public class Workbook implements Model
      * @return record containing a ProtectionRev4Record
      */
 
-    protected Record createProtectionRev4() {
+    protected loci.poi.hssf.record.Record createProtectionRev4() {
         ProtectionRev4Record retval = new ProtectionRev4Record();
 
         retval.setProtect(false);
@@ -1051,7 +1051,7 @@ public class Workbook implements Model
      * @return record containing a PasswordRev4Record
      */
 
-    protected Record createPasswordRev4() {
+    protected loci.poi.hssf.record.Record createPasswordRev4() {
         PasswordRev4Record retval = new PasswordRev4Record();
 
         retval.setPassword(( short ) 0);   // no password by default!
@@ -1074,7 +1074,7 @@ public class Workbook implements Model
      * @return record containing a WindowOneRecord
      */
 
-    protected Record createWindowOne() {
+    protected loci.poi.hssf.record.Record createWindowOne() {
         WindowOneRecord retval = new WindowOneRecord();
 
         retval.setHorizontalHold(( short ) 0x168);
@@ -1096,7 +1096,7 @@ public class Workbook implements Model
      * @return record containing a BackupRecord
      */
 
-    protected Record createBackup() {
+    protected loci.poi.hssf.record.Record createBackup() {
         BackupRecord retval = new BackupRecord();
 
         retval.setBackup(
@@ -1111,7 +1111,7 @@ public class Workbook implements Model
      * @return record containing a HideObjRecord
      */
 
-    protected Record createHideObj() {
+    protected loci.poi.hssf.record.Record createHideObj() {
         HideObjRecord retval = new HideObjRecord();
 
         retval.setHideObj(( short ) 0);   // by default set hide object off
@@ -1125,7 +1125,7 @@ public class Workbook implements Model
      * @return record containing a DateWindow1904Record
      */
 
-    protected Record createDateWindow1904() {
+    protected loci.poi.hssf.record.Record createDateWindow1904() {
         DateWindow1904Record retval = new DateWindow1904Record();
 
         retval.setWindowing(
@@ -1140,7 +1140,7 @@ public class Workbook implements Model
      * @return record containing a PrecisionRecord
      */
 
-    protected Record createPrecision() {
+    protected loci.poi.hssf.record.Record createPrecision() {
         PrecisionRecord retval = new PrecisionRecord();
 
         retval.setFullPrecision(
@@ -1155,7 +1155,7 @@ public class Workbook implements Model
      * @return record containing a RefreshAllRecord
      */
 
-    protected Record createRefreshAll() {
+    protected loci.poi.hssf.record.Record createRefreshAll() {
         RefreshAllRecord retval = new RefreshAllRecord();
 
         retval.setRefreshAll(false);
@@ -1169,7 +1169,7 @@ public class Workbook implements Model
      * @return record containing a BookBoolRecord
      */
 
-    protected Record createBookBool() {
+    protected loci.poi.hssf.record.Record createBookBool() {
         BookBoolRecord retval = new BookBoolRecord();
 
         retval.setSaveLinkValues(( short ) 0);
@@ -1190,7 +1190,7 @@ public class Workbook implements Model
      * @return record containing a FontRecord
      */
 
-    protected Record createFont() {
+    protected loci.poi.hssf.record.Record createFont() {
         FontRecord retval = new FontRecord();
 
         retval.setFontHeight(( short ) 0xc8);
@@ -1211,7 +1211,7 @@ public class Workbook implements Model
      * @see loci.poi.hssf.record.Record
      */
 
-    protected Record createFormat(int id) {   // we'll need multiple editions for
+    protected loci.poi.hssf.record.Record createFormat(int id) {   // we'll need multiple editions for
         FormatRecord retval = new FormatRecord();   // the differnt formats
 
         switch (id) {
@@ -1282,7 +1282,7 @@ public class Workbook implements Model
      * @see loci.poi.hssf.record.Record
      */
 
-    protected Record createExtendedFormat(int id) {   // we'll need multiple editions
+    protected loci.poi.hssf.record.Record createExtendedFormat(int id) {   // we'll need multiple editions
         ExtendedFormatRecord retval = new ExtendedFormatRecord();
 
         switch (id) {
@@ -1638,7 +1638,7 @@ public class Workbook implements Model
      * @see loci.poi.hssf.record.Record
      */
 
-    protected Record createStyle(int id) {   // we'll need multiple editions
+    protected loci.poi.hssf.record.Record createStyle(int id) {   // we'll need multiple editions
         StyleRecord retval = new StyleRecord();
 
         switch (id) {
@@ -1699,7 +1699,7 @@ public class Workbook implements Model
      * @see loci.poi.hssf.record.Record
      */
 
-    protected Record createUseSelFS() {
+    protected loci.poi.hssf.record.Record createUseSelFS() {
         UseSelFSRecord retval = new UseSelFSRecord();
 
         retval.setFlag(( short ) 0);
@@ -1715,7 +1715,7 @@ public class Workbook implements Model
      * @see loci.poi.hssf.record.Record
      */
 
-    protected Record createBoundSheet(int id) {   // 1,2,3 sheets
+    protected loci.poi.hssf.record.Record createBoundSheet(int id) {   // 1,2,3 sheets
         BoundSheetRecord retval = new BoundSheetRecord();
 
         switch (id) {
@@ -1755,7 +1755,7 @@ public class Workbook implements Model
      * @see loci.poi.hssf.record.Record
      */
 
-    protected Record createCountry() {   // what a novel idea, create your own!
+    protected loci.poi.hssf.record.Record createCountry() {   // what a novel idea, create your own!
         CountryRecord retval = new CountryRecord();
 
         retval.setDefaultCountry(( short ) 1);
@@ -1778,7 +1778,7 @@ public class Workbook implements Model
      * @see loci.poi.hssf.record.Record
      */
 
-    protected Record createSST() {
+    protected loci.poi.hssf.record.Record createSST() {
         return new SSTRecord();
     }
 
@@ -1792,7 +1792,7 @@ public class Workbook implements Model
      * @see loci.poi.hssf.record.Record
      */
 
-    protected Record createExtendedSST() {
+    protected loci.poi.hssf.record.Record createExtendedSST() {
         ExtSSTRecord retval = new ExtSSTRecord();
 
         retval.setNumStringsPerBucket(( short ) 0x8);
@@ -1806,7 +1806,7 @@ public class Workbook implements Model
      * @return record containing a EOFRecord
      */
 
-    protected Record createEOF() {
+    protected loci.poi.hssf.record.Record createEOF() {
         return new EOFRecord();
     }
 
@@ -2070,9 +2070,9 @@ public class Workbook implements Model
     /**
      * Returns the first occurance of a record matching a particular sid.
      */
-    public Record findFirstRecordBySid(short sid) {
+    public loci.poi.hssf.record.Record findFirstRecordBySid(short sid) {
         for (Iterator iterator = records.iterator(); iterator.hasNext(); ) {
-            Record record = ( Record ) iterator.next();
+            loci.poi.hssf.record.Record record = ( loci.poi.hssf.record.Record ) iterator.next();
             
             if (record.getSid() == sid) {
                 return record;
@@ -2089,7 +2089,7 @@ public class Workbook implements Model
     public int findFirstRecordLocBySid(short sid) {
         int index = 0;
         for (Iterator iterator = records.iterator(); iterator.hasNext(); ) {
-            Record record = ( Record ) iterator.next();
+            loci.poi.hssf.record.Record record = ( loci.poi.hssf.record.Record ) iterator.next();
 
             if (record.getSid() == sid) {
                 return index;
@@ -2102,10 +2102,10 @@ public class Workbook implements Model
     /**
      * Returns the next occurance of a record matching a particular sid.
      */
-    public Record findNextRecordBySid(short sid, int pos) {
+    public loci.poi.hssf.record.Record findNextRecordBySid(short sid, int pos) {
         int matches = 0;
         for (Iterator iterator = records.iterator(); iterator.hasNext(); ) {
-            Record record = ( Record ) iterator.next();
+            loci.poi.hssf.record.Record record = ( loci.poi.hssf.record.Record ) iterator.next();
 
             if (record.getSid() == sid) {
                 if (matches++ == pos)
@@ -2150,7 +2150,7 @@ public class Workbook implements Model
       PaletteRecord palette;
       int palettePos = records.getPalettepos();
       if (palettePos != -1) {
-        Record rec = records.get(palettePos);
+        loci.poi.hssf.record.Record rec = records.get(palettePos);
         if (rec instanceof PaletteRecord) {
           palette = (PaletteRecord) rec;
         } else throw new RuntimeException("InternalError: Expected PaletteRecord but got a '"+rec+"'");

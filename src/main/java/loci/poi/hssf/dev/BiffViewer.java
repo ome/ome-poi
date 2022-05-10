@@ -112,7 +112,7 @@ public class BiffViewer {
      *@exception  RecordFormatException  on error processing the InputStream
      */
 
-    public static Record[] createRecords(InputStream in, boolean dump)
+    public static loci.poi.hssf.record.Record[] createRecords(InputStream in, boolean dump)
              throws RecordFormatException {
         ArrayList records = new ArrayList();
         RecordDetails activeRecord = null;
@@ -122,7 +122,7 @@ public class BiffViewer {
           while (recStream.hasNextRecord()) {
             recStream.nextRecord();
             if (recStream.getSid() != 0) {
-              Record record = createRecord (recStream);
+              loci.poi.hssf.record.Record record = createRecord (recStream);
                     if (record.getSid() != ContinueRecord.sid)
                     {
                         records.add(record);
@@ -139,13 +139,13 @@ public class BiffViewer {
         } catch (IOException e) {
             throw new RecordFormatException("Error reading bytes", e);
         }
-        Record[] retval = new Record[records.size()];
+        loci.poi.hssf.record.Record[] retval = new loci.poi.hssf.record.Record[records.size()];
 
-        retval = (Record[]) records.toArray(retval);
+        retval = (loci.poi.hssf.record.Record[]) records.toArray(retval);
         return retval;
     }
 
-    private static void dumpNormal(Record record, int startloc, short rectype, short recsize)
+    private static void dumpNormal(loci.poi.hssf.record.Record record, int startloc, short rectype, short recsize)
     {
         System.out.println("Offset 0x" + Integer.toHexString(startloc) + " (" + startloc + ")");
         System.out.println( "recordid = 0x" + Integer.toHexString( rectype ) + ", size = " + recsize );
@@ -158,9 +158,9 @@ public class BiffViewer {
      *  up non-debug operations.
      *
      */
-    private static Record createRecord( RecordInputStream in )
+    private static loci.poi.hssf.record.Record createRecord( RecordInputStream in )
     {
-        Record retval = null;
+        loci.poi.hssf.record.Record retval = null;
 
         switch ( in.getSid() )
         {
@@ -613,9 +613,9 @@ public class BiffViewer {
     {
         short rectype, recsize;
         int startloc;
-        Record record;
+        loci.poi.hssf.record.Record record;
 
-        public RecordDetails( short rectype, short recsize, int startloc, Record record )
+        public RecordDetails( short rectype, short recsize, int startloc, loci.poi.hssf.record.Record record )
         {
             this.rectype = rectype;
             this.recsize = recsize;
@@ -633,7 +633,7 @@ public class BiffViewer {
             return recsize;
         }
 
-        public Record getRecord()
+        public loci.poi.hssf.record.Record getRecord()
         {
             return record;
         }
