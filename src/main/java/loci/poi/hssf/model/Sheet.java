@@ -164,7 +164,7 @@ public class Sheet implements Model
 
         for (int k = offset; k < recs.size(); k++)
         {
-            Record rec = ( Record ) recs.get(k);
+            loci.poi.hssf.record.Record rec = ( loci.poi.hssf.record.Record ) recs.get(k);
 
             if (rec.getSid() == BOFRecord.sid)
             {
@@ -363,7 +363,7 @@ public class Sheet implements Model
     {
       ArrayList clonedRecords = new ArrayList(this.records.size());
       for (int i=0; i<this.records.size();i++) {
-        Record rec = (Record)((Record)this.records.get(i)).clone();
+        loci.poi.hssf.record.Record rec = (loci.poi.hssf.record.Record)((loci.poi.hssf.record.Record)this.records.get(i)).clone();
         //Need to pull out the Row record and the Value records from their
         //Aggregates.
         //This is probably the best way to do it since we probably dont want the createSheet
@@ -371,17 +371,17 @@ public class Sheet implements Model
         if (rec instanceof RowRecordsAggregate) {
           RowRecordsAggregate rrAgg = (RowRecordsAggregate)rec;
           for (Iterator rowIter = rrAgg.getIterator();rowIter.hasNext();) {
-            Record rowRec = (Record)rowIter.next();
+            loci.poi.hssf.record.Record rowRec = (loci.poi.hssf.record.Record)rowIter.next();
             clonedRecords.add(rowRec);
           }
         } else if (rec instanceof ValueRecordsAggregate) {
           ValueRecordsAggregate vrAgg = (ValueRecordsAggregate)rec;
           for (Iterator cellIter = vrAgg.getIterator();cellIter.hasNext();) {
-            Record valRec = (Record)cellIter.next();
+            loci.poi.hssf.record.Record valRec = (loci.poi.hssf.record.Record)cellIter.next();
             
             if (valRec instanceof FormulaRecordAggregate) {
                 FormulaRecordAggregate fmAgg = (FormulaRecordAggregate)valRec;
-                Record fmAggRec = fmAgg.getFormulaRecord();
+                loci.poi.hssf.record.Record fmAggRec = fmAgg.getFormulaRecord();
                 if (fmAggRec != null)
                   clonedRecords.add(fmAggRec);
                 fmAggRec =   fmAgg.getStringRecord();
@@ -393,7 +393,7 @@ public class Sheet implements Model
           }
         } else if (rec instanceof FormulaRecordAggregate) {  //Is this required now??
           FormulaRecordAggregate fmAgg = (FormulaRecordAggregate)rec;
-          Record fmAggRec = fmAgg.getFormulaRecord();
+          loci.poi.hssf.record.Record fmAggRec = fmAgg.getFormulaRecord();
           if (fmAggRec != null)
             clonedRecords.add(fmAggRec);
           fmAggRec =   fmAgg.getStringRecord();
@@ -748,7 +748,7 @@ public class Sheet implements Model
 
         for (int k = 0; k < records.size(); k++)
         {
-            Record record = (( Record ) records.get(k));
+            loci.poi.hssf.record.Record record = (( loci.poi.hssf.record.Record ) records.get(k));
             
             //Once the rows have been found in the list of records, start
             //writing out the blocked row information. This includes the DBCell references
@@ -805,7 +805,7 @@ public class Sheet implements Model
       int sheetRecSize = 0;
       for (int j = BOFRecordIndex+1; j < records.size(); j++)
       {
-        Record tmpRec = (( Record ) records.get(j));
+        loci.poi.hssf.record.Record tmpRec = (( loci.poi.hssf.record.Record ) records.get(j));
         if (tmpRec instanceof RowRecordsAggregate)
           break;
         sheetRecSize+= tmpRec.getRecordSize();
@@ -1406,7 +1406,7 @@ public class Sheet implements Model
      * @return record containing a BOFRecord
      */
 
-    protected Record createBOF()
+    protected loci.poi.hssf.record.Record createBOF()
     {
         BOFRecord retval = new BOFRecord();
 
@@ -1428,7 +1428,7 @@ public class Sheet implements Model
      * @return record containing a IndexRecord
      */
 
-    protected Record createIndex()
+    protected loci.poi.hssf.record.Record createIndex()
     {
         IndexRecord retval = new IndexRecord();
 
@@ -1444,7 +1444,7 @@ public class Sheet implements Model
      * @return record containing a CalcModeRecord
      */
 
-    protected Record createCalcMode()
+    protected loci.poi.hssf.record.Record createCalcMode()
     {
         CalcModeRecord retval = new CalcModeRecord();
 
@@ -1459,7 +1459,7 @@ public class Sheet implements Model
      * @return record containing a CalcCountRecord
      */
 
-    protected Record createCalcCount()
+    protected loci.poi.hssf.record.Record createCalcCount()
     {
         CalcCountRecord retval = new CalcCountRecord();
 
@@ -1474,7 +1474,7 @@ public class Sheet implements Model
      * @return record containing a RefModeRecord
      */
 
-    protected Record createRefMode()
+    protected loci.poi.hssf.record.Record createRefMode()
     {
         RefModeRecord retval = new RefModeRecord();
 
@@ -1489,7 +1489,7 @@ public class Sheet implements Model
      * @return record containing a IterationRecord
      */
 
-    protected Record createIteration()
+    protected loci.poi.hssf.record.Record createIteration()
     {
         IterationRecord retval = new IterationRecord();
 
@@ -1504,7 +1504,7 @@ public class Sheet implements Model
      * @return record containing a DeltaRecord
      */
 
-    protected Record createDelta()
+    protected loci.poi.hssf.record.Record createDelta()
     {
         DeltaRecord retval = new DeltaRecord();
 
@@ -1519,7 +1519,7 @@ public class Sheet implements Model
      * @return record containing a SaveRecalcRecord
      */
 
-    protected Record createSaveRecalc()
+    protected loci.poi.hssf.record.Record createSaveRecalc()
     {
         SaveRecalcRecord retval = new SaveRecalcRecord();
 
@@ -1534,7 +1534,7 @@ public class Sheet implements Model
      * @return record containing a PrintHeadersRecord
      */
 
-    protected Record createPrintHeaders()
+    protected loci.poi.hssf.record.Record createPrintHeaders()
     {
         PrintHeadersRecord retval = new PrintHeadersRecord();
 
@@ -1551,7 +1551,7 @@ public class Sheet implements Model
      * @return record containing a PrintGridlinesRecord
      */
 
-    protected Record createPrintGridlines()
+    protected loci.poi.hssf.record.Record createPrintGridlines()
     {
         PrintGridlinesRecord retval = new PrintGridlinesRecord();
 
@@ -1566,7 +1566,7 @@ public class Sheet implements Model
      * @return record containing a GridsetRecord
      */
 
-    protected Record createGridset()
+    protected loci.poi.hssf.record.Record createGridset()
     {
         GridsetRecord retval = new GridsetRecord();
 
@@ -1581,7 +1581,7 @@ public class Sheet implements Model
      * @return record containing a GutsRecordRecord
      */
 
-    protected Record createGuts()
+    protected loci.poi.hssf.record.Record createGuts()
     {
         GutsRecord retval = new GutsRecord();
 
@@ -1599,7 +1599,7 @@ public class Sheet implements Model
      * @return record containing a DefaultRowHeightRecord
      */
 
-    protected Record createDefaultRowHeight()
+    protected loci.poi.hssf.record.Record createDefaultRowHeight()
     {
         DefaultRowHeightRecord retval = new DefaultRowHeightRecord();
 
@@ -1615,7 +1615,7 @@ public class Sheet implements Model
      * @return record containing a WSBoolRecord
      */
 
-    protected Record createWSBool()
+    protected loci.poi.hssf.record.Record createWSBool()
     {
         WSBoolRecord retval = new WSBoolRecord();
 
@@ -1631,7 +1631,7 @@ public class Sheet implements Model
      * @return record containing a HeaderRecord
      */
 
-    protected Record createHeader()
+    protected loci.poi.hssf.record.Record createHeader()
     {
         HeaderRecord retval = new HeaderRecord();
 
@@ -1647,7 +1647,7 @@ public class Sheet implements Model
      * @return record containing a FooterRecord
      */
 
-    protected Record createFooter()
+    protected loci.poi.hssf.record.Record createFooter()
     {
         FooterRecord retval = new FooterRecord();
 
@@ -1663,7 +1663,7 @@ public class Sheet implements Model
      * @return record containing a HCenterRecord
      */
 
-    protected Record createHCenter()
+    protected loci.poi.hssf.record.Record createHCenter()
     {
         HCenterRecord retval = new HCenterRecord();
 
@@ -1678,7 +1678,7 @@ public class Sheet implements Model
      * @return record containing a VCenterRecord
      */
 
-    protected Record createVCenter()
+    protected loci.poi.hssf.record.Record createVCenter()
     {
         VCenterRecord retval = new VCenterRecord();
 
@@ -1693,7 +1693,7 @@ public class Sheet implements Model
      * @return record containing a PrintSetupRecord
      */
 
-    protected Record createPrintSetup()
+    protected loci.poi.hssf.record.Record createPrintSetup()
     {
         PrintSetupRecord retval = new PrintSetupRecord();
 
@@ -1718,7 +1718,7 @@ public class Sheet implements Model
      * @return record containing a DefaultColWidthRecord
      */
 
-    protected Record createDefaultColWidth()
+    protected loci.poi.hssf.record.Record createDefaultColWidth()
     {
         DefaultColWidthRecord retval = new DefaultColWidthRecord();
 
@@ -1732,7 +1732,7 @@ public class Sheet implements Model
      * @return record containing a ColumnInfoRecord
      */
 
-    protected Record createColInfo()
+    protected loci.poi.hssf.record.Record createColInfo()
     {
         return ColumnInfoRecordsAggregate.createColInfo();
     }
@@ -1983,7 +1983,7 @@ public class Sheet implements Model
      * @return record containing a DimensionsRecord
      */
 
-    protected Record createDimensions()
+    protected loci.poi.hssf.record.Record createDimensions()
     {
         DimensionsRecord retval = new DimensionsRecord();
 
@@ -2028,7 +2028,7 @@ public class Sheet implements Model
      * @return record containing a SelectionRecord
      */
 
-    protected Record createSelection()
+    protected loci.poi.hssf.record.Record createSelection()
     {
         SelectionRecord retval = new SelectionRecord();
 
@@ -2130,7 +2130,7 @@ public class Sheet implements Model
         }
     }
 
-    protected Record createMergedCells()
+    protected loci.poi.hssf.record.Record createMergedCells()
     {
         MergeCellsRecord retval = new MergeCellsRecord();
         retval.setNumAreas(( short ) 0);
@@ -2144,7 +2144,7 @@ public class Sheet implements Model
      * @return record containing a EOFRecord
      */
 
-    protected Record createEOF()
+    protected loci.poi.hssf.record.Record createEOF()
     {
         return new EOFRecord();
     }
@@ -2165,7 +2165,7 @@ public class Sheet implements Model
      * in the event the record is a dimensions record, resets both the loc index and dimsloc index
      */
 
-    public void checkDimsLoc(Record rec, int recloc)
+    public void checkDimsLoc(loci.poi.hssf.record.Record rec, int recloc)
     {
         if (rec.getSid() == DimensionsRecord.sid)
         {
@@ -2180,7 +2180,7 @@ public class Sheet implements Model
 
         for ( int k = 0; k < records.size(); k++ )
         {
-            retval += ( (Record) records.get( k ) ).getRecordSize();
+            retval += ( (loci.poi.hssf.record.Record) records.get( k ) ).getRecordSize();
         }
         //Add space for the IndexRecord
         if (rows != null) {
@@ -2219,11 +2219,11 @@ public class Sheet implements Model
      * Returns the first occurance of a record matching a particular sid.
      */
 
-    public Record findFirstRecordBySid(short sid)
+    public loci.poi.hssf.record.Record findFirstRecordBySid(short sid)
     {
         for (Iterator iterator = records.iterator(); iterator.hasNext(); )
         {
-            Record record = ( Record ) iterator.next();
+            loci.poi.hssf.record.Record record = ( loci.poi.hssf.record.Record ) iterator.next();
 
             if (record.getSid() == sid)
             {
@@ -2267,7 +2267,7 @@ public class Sheet implements Model
         int index = 0;
         for (Iterator iterator = records.iterator(); iterator.hasNext(); )
         {
-            Record record = ( Record ) iterator.next();
+            loci.poi.hssf.record.Record record = ( loci.poi.hssf.record.Record ) iterator.next();
 
             if (record.getSid() == sid)
             {
@@ -2530,7 +2530,7 @@ public class Sheet implements Model
      * @see loci.poi.hssf.record.Record
      * @return a ProtectRecord
      */
-    protected Record createProtect()
+    protected loci.poi.hssf.record.Record createProtect()
     {
         if (log.check( POILogger.DEBUG ))
             log.log(POILogger.DEBUG, "create protect record with protection disabled");
@@ -2725,7 +2725,7 @@ public class Sheet implements Model
     {
         for ( Iterator iterator = getRecords().iterator(); iterator.hasNext(); )
         {
-            Record r = (Record) iterator.next();
+            loci.poi.hssf.record.Record r = (loci.poi.hssf.record.Record) iterator.next();
             if (r instanceof EscherAggregate)
                 r.getRecordSize();   // Trigger flatterning of user model and corresponding update of dgg record.
         }

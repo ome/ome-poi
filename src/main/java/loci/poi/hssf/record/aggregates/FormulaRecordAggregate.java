@@ -50,7 +50,7 @@ import loci.poi.hssf.record.*;
  * @author Glen Stampoultzis (glens at apache.org)
  */
 public class FormulaRecordAggregate
-        extends Record
+        extends loci.poi.hssf.record.Record
         implements CellValueRecordInterface, Comparable
 {
     public final static short sid       = -2000;

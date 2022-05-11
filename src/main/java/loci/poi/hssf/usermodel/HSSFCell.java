@@ -245,7 +245,7 @@ public class HSSFCell
      */
     private int determineType(CellValueRecordInterface cval)
     {
-        Record record = ( Record ) cval;
+        loci.poi.hssf.record.Record record = ( loci.poi.hssf.record.Record ) cval;
         int    sid    = record.getSid();
         int    retval = 0;
 
@@ -1024,7 +1024,7 @@ public class HSSFCell
         HSSFComment comment = null;
         HashMap txshapes = new HashMap(); //map shapeId and TextObjectRecord
         for (Iterator it = sheet.getRecords().iterator(); it.hasNext(); ) {
-           Record rec = ( Record ) it.next();
+           loci.poi.hssf.record.Record rec = ( loci.poi.hssf.record.Record ) it.next();
            if (rec instanceof NoteRecord){
                NoteRecord note = (NoteRecord)rec;
                if (note.getRow() == row && note.getColumn() == column){
@@ -1045,7 +1045,7 @@ public class HSSFCell
                    if (cmo.getObjectType() == CommonObjectDataSubRecord.OBJECT_TYPE_COMMENT){
                        //find the nearest TextObjectRecord which holds comment's text and map it to its shapeId
                        while(it.hasNext()) {
-                           rec = ( Record ) it.next();
+                           rec = ( loci.poi.hssf.record.Record ) it.next();
                            if (rec instanceof TextObjectRecord) {
                                txshapes.put(new Integer(cmo.getObjectId()), rec);
                                break;

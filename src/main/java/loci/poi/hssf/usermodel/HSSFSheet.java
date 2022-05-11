@@ -189,7 +189,7 @@ public class HSSFSheet
             {
                 lastrow = hrow;
                 if (log.check( POILogger.DEBUG ))
-                    log.log( DEBUG, "record id = " + Integer.toHexString( ( (Record) cval ).getSid() ) );
+                    log.log( DEBUG, "record id = " + Integer.toHexString( ( (loci.poi.hssf.record.Record) cval ).getSid() ) );
                 hrow.createCellFromRecord( cval );
                 cval = sheet.getNextValueRecord();
                 if (log.check( POILogger.DEBUG ))

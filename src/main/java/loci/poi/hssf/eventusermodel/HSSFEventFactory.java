@@ -157,8 +157,8 @@ public class HSSFEventFactory
 		process:
 		{
                   
-			Record rec       = null;
-			Record lastRec   = null;
+			loci.poi.hssf.record.Record rec       = null;
+			loci.poi.hssf.record.Record lastRec   = null;
 			DrawingRecord lastDrawingRecord = new DrawingRecord();
 
 			while (in.hasNextRecord())
@@ -191,7 +191,7 @@ public class HSSFEventFactory
 				if (sid != ContinueRecord.sid)
 				{
                                         //System.out.println("creating "+sid);
-					Record[] recs = RecordFactory.createRecord(in);
+					loci.poi.hssf.record.Record[] recs = RecordFactory.createRecord(in);
 
 					if (recs.length > 1)
 					{                                // we know that the multiple
@@ -214,7 +214,7 @@ public class HSSFEventFactory
 					// However, in a few cases, there is a gap between a record at
 					//  its Continue, so we have to handle them specially
 					// This logic is much like in RecordFactory.createRecords()
-					Record[] recs = RecordFactory.createRecord(in);
+					loci.poi.hssf.record.Record[] recs = RecordFactory.createRecord(in);
 					ContinueRecord crec = (ContinueRecord)recs[0];
 					if((lastRec instanceof ObjRecord) || (lastRec instanceof TextObjectRecord)) {
 						// You can have Obj records between a DrawingRecord
