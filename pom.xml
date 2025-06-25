@@ -12,16 +12,16 @@
 
   <name>OME POI</name>
   <description>Java API to handle Microsoft OLE 2 Compound Document format (Word, Excel). Based on poi-2.5.1-final-20040804.jar, with bugfixes for OLE v2 and memory efficiency improvements. Used by Bio-Formats for OLE support (cxd, ipw, oib, zvi). Used by VisBio overlays logic for XLS export feature.</description>
-  <url>http://jakarta.apache.org/poi/</url>
+  <url>https://poi.apache.org/</url>
   <inceptionYear>2008</inceptionYear>
   <organization>
     <name>Open Microscopy Environment</name>
-    <url>http://www.openmicroscopy.org/</url>
+    <url>https://www.openmicroscopy.org/</url>
   </organization>
   <licenses>
     <license>
       <name>Apache License, Version 2.0</name>
-      <url>http://www.apache.org/licenses/LICENSE-2.0</url>
+      <url>https://www.apache.org/licenses/LICENSE-2.0</url>
       <distribution>repo</distribution>
     </license>
   </licenses>
@@ -53,23 +53,6 @@
     <contributor><name>Christoph Sommer</name></contributor>
   </contributors>
 
-  <mailingLists>
-    <mailingList>
-      <name>OME-users</name>
-      <subscribe>http://lists.openmicroscopy.org.uk/mailman/listinfo/ome-users/</subscribe>
-      <unsubscribe>http://lists.openmicroscopy.org.uk/mailman/listinfo/ome-users/</unsubscribe>
-      <post>ome-users@lists.openmicroscopy.org.uk</post>
-      <archive>http://lists.openmicroscopy.org.uk/pipermail/ome-users/</archive>
-    </mailingList>
-    <mailingList>
-      <name>OME-devel</name>
-      <subscribe>http://lists.openmicroscopy.org.uk/mailman/listinfo/ome-devel/</subscribe>
-      <unsubscribe>http://lists.openmicroscopy.org.uk/mailman/listinfo/ome-devel/</unsubscribe>
-      <post>ome-devel@lists.openmicroscopy.org.uk</post>
-      <archive>http://lists.openmicroscopy.org.uk/pipermail/ome-devel/</archive>
-    </mailingList>
-  </mailingLists>
-
   <prerequisites>
     <maven>3.0.5</maven>
   </prerequisites>
@@ -78,15 +61,15 @@
     <connection>scm:git:https://github.com/ome/ome-poi</connection>
     <developerConnection>scm:git:git@github.com:ome/ome-poi</developerConnection>
     <tag>HEAD</tag>
-    <url>http://github.com/ome/ome-poi</url>
+    <url>https://github.com/ome/ome-poi</url>
   </scm>
   <issueManagement>
-    <system>Trac</system>
-    <url>https://trac.openmicroscopy.org/ome</url>
+    <system>GitHub</system>
+    <url>https://github.com/ome/ome-poi/issues</url>
   </issueManagement>
   <ciManagement>
-    <system>Jenkins</system>
-    <url>https://ci.openmicroscopy.org/</url>
+    <system>GitHub</system>
+    <url>https://github.com/ome/ome-poi/actions</url>
   </ciManagement>
 
   <properties>
